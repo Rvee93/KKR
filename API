@@ -1,0 +1,38 @@
+Dependencies to add : http client http core json library
+
+
+TestBase : 
+
+create constructor of BaseClass: 
+RestClient restClient  = new RestClient();
+restClient.get(url);
+
+new Class: 
+1. Get Method: 
+public void get(String url){
+CloseableHttpclient httpclient = HTTPClients.createDefault();
+HttpGet httpget = new HttpGet(url);   //http get request
+CloseableHttpResponse  closeablehttpresponse = httpClient.execute(httget);	// hit the get url
+int StatusCode = closeablehttpresponse.getStatusLine().getStatusCode();
+
+SYSO(StatusCode);
+
+String responseinstring = EntityUtils.toString(closeablehttpresponse.getEntity(), "UTF-8")
+
+JSONObject responsejson = new JSONObject(responseinstring);
+
+SYSO(responsejson);
+
+Header headerArray = closableHttpResponse.getAllHeaders();
+HashMap<String, String> allHeaders = new HashMap<String,String>();
+
+for(Header header : headersArray)
+{
+allHeaders.put(header.getname(), header.getvalue());
+}
+
+SYSO(allHeaders)
+
+}
+
+
